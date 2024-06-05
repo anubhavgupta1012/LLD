@@ -21,7 +21,7 @@ public class TicTacToeApplication {
         GameController gameController = new GameController();
         System.out.println("starting game");
         List<Player> players = Arrays.asList(new Player("Anubhav", new Symbol('*'),
-                PlayerType.HUMAN), new Player("Dheeraj", new Symbol('*'), PlayerType.HUMAN));
+                PlayerType.HUMAN), new Player("Dheeraj", new Symbol('O'), PlayerType.HUMAN));
         List<WinningStrategy> winningStrategies = Arrays.asList(new DiagWinningStrategy(), new ColWinningStrategy(), new RowWinningStrategy());
         Game game = gameController.startGame(players, 3, winningStrategies);
 
