@@ -1,7 +1,10 @@
 package com.org.tic_tac_toe.models;
 
+import lombok.Data;
+
 import java.util.Scanner;
 
+@Data
 public class Player {
     int id;
     String name;

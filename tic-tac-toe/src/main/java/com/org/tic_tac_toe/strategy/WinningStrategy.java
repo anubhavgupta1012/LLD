@@ -1,7 +1,8 @@
 package com.org.tic_tac_toe.strategy;
 
-import com.org.tic_tac_toe.models.Player;
+import com.org.tic_tac_toe.models.Board;
+import com.org.tic_tac_toe.models.Move;
 
 public interface WinningStrategy {
-    Player checkWinner();
+    boolean checkWinner(Board board, Move move);
 }

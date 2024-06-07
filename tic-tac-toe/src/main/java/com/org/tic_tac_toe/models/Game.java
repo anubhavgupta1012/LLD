@@ -35,8 +35,59 @@ public class Game {
         Player player = players.get(nextPlayerTurnIndex);
         System.out.println("Its " + player.name + "'s turn, Make your move.");
         Move move = player.makeMove(board);
+        System.out.println("Player " + player.name + " made a move on " + move.movingCell.getX() + " " + move.movingCell.getY());
 
         //Validate the move
+        // TODO: move, Move Validation in Game Validation
+        boolean isCorrect = validateMove(move);
+        if (!isCorrect) {
+            System.out.println("Not a valid Move");
+            return;
+        }
+
+        //Update the board
+        int x = move.movingCell.getX();
+        int y = move.movingCell.getY();
+        Cell cell = board.getBoard().get(x).get(y);
+        cell.setCellState(CellState.FILLED);
+        cell.setPlayer(player);
+
+        move.setMovingCell(cell);       // Just updating the Board cell's Reference in Move
+        move.setPlayer(player);
+
+        moves.add(move);
+
+        // update player's turn
+        nextPlayerTurnIndex++;
+        nextPlayerTurnIndex = nextPlayerTurnIndex % players.size();
+
+        // checkWinner
+        if (checkWinner(board, move)) {
+            winner = player;
+            gameState = GameState.WIN;
+        } else if (moves.size() == board.getSize() * board.getSize()) {
+            gameState = GameState.DRAW;
+        }
+    }
+
+    private boolean checkWinner(Board board, Move move) {
+
+        for (WinningStrategy winningStrategy : strategies) {
+            boolean haveWon = winningStrategy.checkWinner(board, move);
+            if (haveWon)
+                return true;
+        }
+        return false;
+    }
+
+    private boolean validateMove(Move move) {
+        int x = move.movingCell.getX();
+        int y = move.movingCell.getY();
+
+        if (x >= board.getSize() || y >= board.getSize()) return false;
+        else if (board.getBoard().get(x).get(y).getCellState().equals(CellState.EMPTY)) return true;
+
+        return false;
     }
 
     public static class GameBuilder {

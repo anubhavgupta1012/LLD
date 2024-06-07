@@ -8,4 +8,20 @@ public class Move {
         this.movingCell = movingCell;
         this.player = player;
     }
+
+    public Cell getMovingCell() {
+        return movingCell;
+    }
+
+    public void setMovingCell(Cell movingCell) {
+        this.movingCell = movingCell;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }
