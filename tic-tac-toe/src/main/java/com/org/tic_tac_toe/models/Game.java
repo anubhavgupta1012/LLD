@@ -4,11 +4,12 @@ import com.org.tic_tac_toe.exception.BotGreaterThan1Exception;
 import com.org.tic_tac_toe.exception.DuplicatePlayerSymbolException;
 import com.org.tic_tac_toe.exception.PlayerCountMismatchException;
 import com.org.tic_tac_toe.strategy.WinningStrategy;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
+@Data
 public class Game {
     Board board;
     List<Player> players;
@@ -88,6 +89,31 @@ public class Game {
         else if (board.getBoard().get(x).get(y).getCellState().equals(CellState.EMPTY)) return true;
 
         return false;
+    }
+
+    public void undo() {
+        if (moves.isEmpty()) {
+            System.out.println("No Moves to Undo");
+            return;
+        }
+
+        Move lastMove = moves.get(moves.size() - 1);
+        moves.remove(lastMove);
+
+
+        Cell lastMoveMovingCell = lastMove.getMovingCell();
+        lastMoveMovingCell.setPlayer(null);
+        lastMoveMovingCell.setCellState(CellState.EMPTY);
+
+        if (nextPlayerTurnIndex == 0)
+            nextPlayerTurnIndex = board.getSize() - 1;
+        else
+            nextPlayerTurnIndex--;
+
+    }
+
+    public void printBoard() {
+        board.printBoard();
     }
 
     public static class GameBuilder {

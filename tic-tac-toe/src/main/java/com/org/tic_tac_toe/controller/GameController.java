@@ -21,7 +21,7 @@ public class GameController {
     }
 
     public GameState getGameState(Game game) {
-        return null;
+        return game.getGameState();
     }
 
     public void makeMove(Game game) {
@@ -29,14 +29,14 @@ public class GameController {
     }
 
     public void showBoard(Game game) {
-
+        game.printBoard();
     }
 
     public Player getWinner(Game game) {
-        return null;
+        return game.getWinner();
     }
 
     public void undo(Game game) {
-
+        game.undo();
     }
 }

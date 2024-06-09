@@ -9,6 +9,7 @@ public class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
+        this.cellState = CellState.EMPTY;
     }
 
     public int getX() {
@@ -41,5 +42,12 @@ public class Cell {
 
     public void setCellState(CellState cellState) {
         this.cellState = cellState;
+    }
+
+    public void printCell() {
+        if (this.getPlayer() == null) {
+            System.out.print("\t_\t");
+        } else
+            System.out.print("\t" + this.getPlayer().symbol.symbol + "\t");
     }
 }

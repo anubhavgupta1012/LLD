@@ -6,10 +6,7 @@ import com.org.tic_tac_toe.exception.BotGreaterThan1Exception;
 import com.org.tic_tac_toe.exception.DuplicatePlayerSymbolException;
 import com.org.tic_tac_toe.exception.PlayerCountMismatchException;
 import com.org.tic_tac_toe.models.*;
-import com.org.tic_tac_toe.strategy.ColWinningStrategy;
-import com.org.tic_tac_toe.strategy.DiagWinningStrategy;
-import com.org.tic_tac_toe.strategy.RowWinningStrategy;
-import com.org.tic_tac_toe.strategy.WinningStrategy;
+import com.org.tic_tac_toe.strategy.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,8 +17,10 @@ public class TicTacToeApplication {
 
         GameController gameController = new GameController();
         System.out.println("starting game");
-        List<Player> players = Arrays.asList(new Player("Anubhav", new Symbol('*'),
-                PlayerType.HUMAN), new Player("Dheeraj", new Symbol('O'), PlayerType.HUMAN));
+
+        // TODO: Command line Design Pattern for main class
+        List<Player> players = Arrays.asList(new Player("Anubhav", new Symbol('*'), PlayerType.HUMAN),
+                new Bot("BOT 1", new Symbol('O'), new Easy()));
         List<WinningStrategy> winningStrategies = Arrays.asList(new DiagWinningStrategy(), new ColWinningStrategy(), new RowWinningStrategy());
         Game game = gameController.startGame(players, 3, winningStrategies);
 
@@ -29,6 +28,10 @@ public class TicTacToeApplication {
             gameController.makeMove(game);
             gameController.showBoard(game);
         }
+
+        System.out.println("Game Ended");
+        GameState gameState = game.getGameState();
+        System.out.println(gameState == GameState.DRAW ? "Game draw" : game.getWinner().getName() + " is THE WINNER");
     }
 
 }

@@ -27,4 +27,13 @@ public class Board {
     public List<List<Cell>> getBoard() {
         return board;
     }
+
+    public void printBoard() {
+        for (List<Cell> row : board) {
+            for (Cell cell : row) {
+                cell.printCell();
+            }
+            System.out.println();
+        }
+    }
 }

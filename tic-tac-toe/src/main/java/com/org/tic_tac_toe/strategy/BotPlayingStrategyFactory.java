@@ -4,8 +4,8 @@ public class BotPlayingStrategyFactory {
 
     public static BotPlayingStrategy getStrategy(BotDifficultyLevel botDifficultyLevel) {
         /*TODO : Handle Strategy*/
-        if (botDifficultyLevel instanceof EasyBotPlayingStrategy) return new EasyBotPlayingStrategy();
-        else if (botDifficultyLevel instanceof MideumBotPlayingStrategy) return new MideumBotPlayingStrategy();
+        if (botDifficultyLevel instanceof Easy) return new EasyBotPlayingStrategy();
+        else if (botDifficultyLevel instanceof Medium) return new MideumBotPlayingStrategy();
         return new HardBotPlayingStrategy();
     }
 }
