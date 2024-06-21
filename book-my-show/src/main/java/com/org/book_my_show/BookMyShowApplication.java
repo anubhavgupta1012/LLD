@@ -1,9 +1,13 @@
 package com.org.book_my_show;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class BookMyShowApplication {
 
     public static void main(String[] args) {
-        System.out.println("dkdmkdmd");
+        SpringApplication.run(BookMyShowApplication.class, args);
     }
 
 }
