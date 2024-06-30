@@ -3,6 +3,7 @@ package com.org.book_my_show.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -17,5 +18,5 @@ public class ShowSeat {
     private Seat seat;
     @Enumerated(EnumType.ORDINAL)
     private SeatShowStatus seatShowStatus;
-    private int price;
+    private Date blockedAt;
 }
