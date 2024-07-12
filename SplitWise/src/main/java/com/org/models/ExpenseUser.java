@@ -14,6 +14,6 @@ public class ExpenseUser {
     @ManyToOne                                                  //??? How
     private User user;
     private int amount;
-    @Enumerated
+    @Enumerated(EnumType.ORDINAL)
     private ExpenseUserType expenseUserType;
 }

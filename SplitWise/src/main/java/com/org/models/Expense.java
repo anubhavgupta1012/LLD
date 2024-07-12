@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +20,6 @@ public class Expense {
     private Group group;
     @Enumerated
     private ExpenseType expenseType;
+    @OneToMany(mappedBy = "expense")
+    private List<ExpenseUser> expenseUserList;
 }
